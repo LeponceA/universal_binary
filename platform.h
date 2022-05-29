@@ -12,7 +12,7 @@ typedef struct {
    uint32_t majorVersion;
    uint32_t minorVersion;
    uint32_t patchVersion;
-} VersionMMP; // TODO: static assert to ensure no padding
+} VersionMMP;
 
 typedef struct {
    uint8_t sizeIsaName;

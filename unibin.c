@@ -9,7 +9,7 @@
 #include "platform-specific/filemanip.h"
 #include "unibin.h"
 #include "compatibility.h"
-#include "files_adder.h"
+#include "package.h"
 #include "platform.h"
 #include "compat_test.h"
 
@@ -152,7 +152,7 @@ static inline bool ExtractPackages(FILE* fin, utf8** outpath, const Platform* ma
       if (!SetPositionInBytes(fin, offset))
          return false;
 
-      if (!RecursivelyReproduceFiles(fin, outpath))
+      if (!ReproducePackageFiles(fin, outpath))
          return false;
    }
 

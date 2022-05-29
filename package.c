@@ -309,12 +309,13 @@ bool WritePackage(FILE* fout, const utf8 parentPath[]) {
 }
 
 /**
- * Recursively reproduce the files in `fin` into the
- * directory `*currentDirName`.
+ * Recursively reproduce the files of the package stored
+ * at the current position in `fin` into the directory
+ * `*currentDirName`.
  *
  * Return true if succesful.
  */
-bool RecursivelyReproduceFiles(FILE* fin, utf8** currentDirName) {
+bool ReproducePackageFiles(FILE* fin, utf8** currentDirName) {
    FileType fileType = FT_INIT;
    size_t endDirName = strlen(*currentDirName);
    utf8* fullPath = realloc(*currentDirName, endDirName + 65536 + PATH_SEPARATOR_SIZE);
@@ -336,7 +337,7 @@ bool RecursivelyReproduceFiles(FILE* fin, utf8** currentDirName) {
          return true;
       } else if (fileType == FT_DIRECTORY) {
          // A new file/directory has been encountered
-         if (!RecursivelyReproduceFiles(fin, currentDirName))
+         if (!ReproducePackageFiles(fin, currentDirName))
             return false;
       }
 

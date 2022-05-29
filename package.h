@@ -3,6 +3,6 @@
 
 bool WritePackage(FILE* fout, const utf8 parentPath[]);
 
-bool RecursivelyReproduceFiles(FILE* fin, utf8** currentDirName);
+bool ReproducePackageFiles(FILE* fin, utf8** currentDirName);
 
 #endif

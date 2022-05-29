@@ -1,9 +1,3 @@
-
-
-ZLIB=lib/zlib/libz.a
-LIBS=$(ZLIB)
-INCLUDE=lib
-
 CC=gcc
 DBG=-g -fsanitize=address -fsanitize=leak -Wformat=2 -Wduplicated-cond -Wfloat-equal -Wshadow -Wconversion -Wjump-misses-init -Wlogical-not-parentheses -Wnull-dereference
 CFLAGS=-Wall -Wextra -pedantic -std=c99 -O2
@@ -13,12 +7,12 @@ PATH_WIN32=platform-specific/win32
 PATH_POSIX=platform-specific/posix
 PATH_X86=platform-specific/x86
 NAME=unibin
-OBJ=main.o file_header.o compatibility.o files_adder.o unibin.o compat_test.o packages_table.o platform.o $(PATH_WIN32)/win32.o $(PATH_POSIX)/posix.o $(PATH_X86)/x86_64.o
+OBJ=main.o file_header.o compatibility.o package.o unibin.o compat_test.o packages_table.o platform.o $(PATH_WIN32)/win32.o $(PATH_POSIX)/posix.o $(PATH_X86)/x86_64.o
 
 all: unibin check
 
 unibin: $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -L$(LIBS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 
 main.o: main.c
 	$(CC) $(CFLAGS) -c main.c -o main.o
@@ -26,8 +20,8 @@ main.o: main.c
 file_header.o: file_header.c
 	$(CC) $(CFLAGS) -c file_header.c -o file_header.o
 
-files_adder.o: files_adder.c
-	$(CC) $(CFLAGS) -c files_adder.c -o files_adder.o
+package.o: package.c
+	$(CC) $(CFLAGS) -c package.c -o package.o
 
 compatibility.o: compatibility.c
 	$(CC) $(CFLAGS) -c compatibility.c -o compatibility.o
